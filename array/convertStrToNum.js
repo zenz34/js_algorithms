@@ -38,4 +38,37 @@ function strToNum(str) {
 
 let obj = strToNum("abc cde adb dfb def ee abcd cc");
 
-console.log(obj);
+// console.log(obj);
+
+function Animal() {
+    this.species = "animal";
+}
+Animal.prototype.haha = "haha";
+
+function Cat(name, color) {
+    Animal.apply(this, arguments);
+
+    this.name = name;
+
+    this.color = color;
+}
+
+function Cat(name, color) {
+    //Animal.apply(this, arguments);
+
+    this.name = name;
+    this.color = color;
+}
+
+Cat.prototype = new Animal();
+Cat.prototype.constructor = Cat;
+
+var cat1 = new Cat("damao", "yellow");
+
+Cat.prototype = Animal.prototype;
+
+Cat.prototype.constructor = Cat;
+
+var cat2 = new Cat("cat", "red");
+console.log(cat2.species);
+console.log(cat2.haha);
